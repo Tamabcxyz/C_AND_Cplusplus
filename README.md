@@ -149,4 +149,26 @@ const int& ref = 10;
 std::cout << ref << "\n";   // OK!
 std::cout << ++ref << "\n"; // error: increment of read-only reference ‘ref’
 ```
+#### Nested ternary operator
+Sysntax:
+```
+Expression1 ? Expression2 : Expression3
+```
+For example:
+```
+(a) ? (b ? c : d) : (e ? f : g)
+```
+We can also express it using nested if else statement to understand it better
+```
+if  ( a )
+    if( b )
+        execute c
+    else
+        execute d
+else
+    if ( e )
+        execute f
+    else
+        execute g
+```
 
