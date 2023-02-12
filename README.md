@@ -149,6 +149,79 @@ const int& ref = 10;
 std::cout << ref << "\n";   // OK!
 std::cout << ++ref << "\n"; // error: increment of read-only reference ‘ref’
 ```
+#### lvalue and rvalue reference
+* lvalue (&)
+* rvalue (&&)
+Can only be bound to lvalues but not rvalues. How ever we can bound rvalue to **const lvalue reference**
+```
+int i = 10;
+int& k = i; //k is a lvalue referency
+int& k = 10; //Error because k is lvalue referencyand 10 is rvalue
+const int& k = 10; //It's ok
+```
+Example for rvalue referency:
+```
+int func(){
+//do some thing
+return 0;
+}
+//in main
+int&& i = 10; //ok
+int&& x = func(); //ok
+int x = func(); //ok
+int& x = func(); //error because func return a rvalue not lvalue
+```
+**Convert lvalue to rvalue reference**
+* std::move(lvalue)
+* static_cast<typename &&>(lvalue)
+#### Move senmatics move constructor
+```
+#include <iostream>
+using namespace std;
+class A{
+    public:
+        A(){std::cout << "Default constructor\n";}
+        A(A&){std::cout << "Copy constructor\n";}
+        A(A&&){std::cout << "Move constructor\n";}
+};
+
+int main()
+{
+    A a; //It's call default constructor
+    A b = a; //It's call copy constructor
+    A c = std::move(a); //It's call move constructor
+    return 0;
+}
+```
+#### Move senmatics move assignment operator
+```
+#include <iostream>
+using namespace std;
+class A{
+    public:
+        A(){std::cout << "Default constructor\n";}
+        A(A&){std::cout << "Copy constructor\n";}
+        A(A&&){std::cout << "Move constructor\n";}
+        
+        A& operator = (A&){
+            std::cout << "Copy assignment\n";
+            return *this;
+        }
+        A& operator = (A&&){
+            std::cout << "Move assignment\n";
+            return *this;
+        }
+};
+
+int main()
+{
+    A a; //It's call default constructor
+    A b; //It's call default constructor
+    b = a; //It's call copy assignment operator
+    b = std::move(a); //It's call move assignment operator
+    return 0;
+}
+```
 #### Nested ternary operator
 Sysntax:
 ```
