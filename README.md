@@ -244,4 +244,62 @@ else
     else
         execute g
 ```
+#### Static data member
+```
+#include <iostream>
+using namespace std;
+class Base{
+    private:
+    int x;
+    //static data member
+    static int y;
+    public:
+    void setX(int a){x=a;}
+    void setY(int b){y=b;}
+    int getX(){return x;}
+    int getY(){return y;}
+};
+//Have to init static data member
+int Base::y=1;
+int main()
+{
+    Base a,b;
+    a.setY(10);
+    a.setX(1);
+    b.setY(20);
+    b.setX(2);
+    std::cout << a.getX() <<std::endl; //1
+    std::cout << a.getY() <<std::endl; //20
+    std::cout << b.getX() <<std::endl; //2
+    std::cout << b.getY(); //20
+    return 0;
+}
+```
+#### Const data member
++ const inside class (Can not change the value of const variable inside class)
++ const outside class (Can change the value of variable)
+```
+#include <iostream>
+#include <string>
+using namespace std;
+class Car{
+    private:
+    const std::string cname;
+    int no;
+    public:
+    Car(std::string name, int n):cname(name), no(n){}
+    std::string getCarNameAndNo(){
+        return cname + ", " + std::to_string(no);
+    }
+};
+
+int main()
+{
+    //init const variable cname outside class through constructor
+    Car a("Model A", 1), b("Model S", 2);
+    std::cout << a.getCarNameAndNo() << std::endl; 
+    std::cout << b.getCarNameAndNo() << std::endl; 
+    return 0;
+}
+```
 
