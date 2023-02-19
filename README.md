@@ -302,4 +302,43 @@ int main()
     return 0;
 }
 ```
+#### const before parameter vs const after function name c++
+1. const keywork we can't change value
+```
+const int var =25; //const variable must be initialized when it's declared.
+var =50; //gives error
+```
+2. variable pointer with **const** after ***** then we can't change pointer itself but content of pointer is changeable.
+```
+int *const ptr = new int;
+ptr = new int; //gives error
+*ptr=5445; //allowed
+```
+3. variable pointer with **const** before ***** then we can change pointer itself but content of pointer is not changeable.
+```
+int const* ptr = new int(85);      
+//const int * ptr = new int(85);
+ptr = new int; //allowed
+*ptr=5445; //gives error
+```
+4. pointer and content both constant.
+```
+int const*constptr = new int(85);                        
+//const int *constptr = new int(85);
+ptr = new int; // not allowed
+*ptr=5445; // not allowed
+```
+Example with class:
+```
+class C {
+  void f(int x);
+};
+//You can imagine really looks like this:
+ void f(C* this, int x);
+//Now, if you declare it this way:
+ void f(int x) const;
+//It's as if you wrote this:
+void f(const C* this, int x);
+==> **const** after f() mean the method cannot modify the object on which it was invoked.
+```
 
