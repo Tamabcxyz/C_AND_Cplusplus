@@ -341,4 +341,36 @@ class C {
 void f(const C* this, int x);
 ==> **const** after f() mean the method cannot modify the object on which it was invoked.
 ```
+#### static_pointer_cast and dynamic_pointer_cast
+```
+#include <iostream>
+#include <string>
+#include <memory>
+using namespace std;
+class A {
+    public:
+      A() {}
+      void func(){
+          std::cout << "A\n";
+      }
+};
+class B: public A {
+    public:
+      B() {}
+      void func(){
+          std::cout << "B\n";
+      }
+};
+
+int main()
+{
+    auto a=std::make_shared<A>();
+    std::static_pointer_cast<A>(a)->func(); //A
+    auto b = std::make_shared<B>();
+    std::static_pointer_cast<B>(b)->func(); //B
+    auto c = std::dynamic_pointer_cast<A>(b);
+    std::static_pointer_cast<A>(c)->func(); //A
+    return 0;
+}
+```
 
