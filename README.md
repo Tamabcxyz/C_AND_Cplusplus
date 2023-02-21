@@ -365,11 +365,17 @@ class B: public A {
 int main()
 {
     auto a=std::make_shared<A>();
+    //casting a shared pointer to pointer of class A if wanna use func of class A
     std::static_pointer_cast<A>(a)->func(); //A
     auto b = std::make_shared<B>();
+    //casting a shared pointer to pointer of class B if wanna use func of class B
     std::static_pointer_cast<B>(b)->func(); //B
+    //casting a shared pointer of delivery class (B) to Base class (A)
     auto c = std::dynamic_pointer_cast<A>(b);
-    std::static_pointer_cast<A>(c)->func(); //A
+    c->func();
+    //casting a shared pointer of Base class (A) to delivery class (B)
+    auto d = std::static_pointer_cast<B>(a);
+    d->func(); //B
     return 0;
 }
 ```
