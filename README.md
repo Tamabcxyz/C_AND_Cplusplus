@@ -379,4 +379,31 @@ int main()
     return 0;
 }
 ```
-
+#### Call private function of child class
+```
+using namespace std;
+class A{
+    private:
+    int a;
+    public:
+    virtual void display(){
+        std::cout << "A\n";
+    }
+};
+class B : public A{
+    private:
+    int b;
+    void display(){
+        std::cout << "Private B";
+    }
+    public:
+    B(int x):b{x}{}
+};
+int main()
+{
+    B b(5);
+    A *a = &b;
+    a->display(); // Private B
+    return 0;
+}
+```
