@@ -252,7 +252,7 @@ class Base{
     private:
     int x;
     //static data member
-    static int y;
+    static int y; //in c++17 we can declare "static inline int y;"
     public:
     void setX(int a){x=a;}
     void setY(int b){y=b;}
@@ -260,7 +260,7 @@ class Base{
     int getY(){return y;}
 };
 //Have to init static data member
-int Base::y=1;
+int Base::y=1; //we can remove this line if using inline keywork in c++ 17
 int main()
 {
     Base a,b;
