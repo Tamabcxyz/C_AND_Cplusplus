@@ -407,3 +407,27 @@ int main()
     return 0;
 }
 ```
+#### a reference data member in class only asign on this way
+```
+#include <iostream>
+using namespace std;
+struct Point{
+    int x=0,y=0;
+};
+class Shape : public Point{
+    private:
+    Point& b;
+    public:
+    Shape(Point& for_b) : b{for_b}{
+        //b = for_b; error
+    }
+    ~Shape(){}
+};
+
+int main()
+{
+    Point p;
+    Shape shape(p);
+    return 0;
+}
+```
