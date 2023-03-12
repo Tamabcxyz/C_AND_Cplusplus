@@ -469,3 +469,23 @@ int main()
     return 0;
 }
 ```
+#### parameter pack
+how to plus all agument into a function
+```
+#include <iostream>
+#include <string>
+template<typename T>
+T Plus(T arg){
+    return arg;
+}
+template<typename T, typename... Args>
+T Plus(T start, Args... args){
+    return start + Plus(args...);
+}
+
+int main()
+{
+    std::cout << Plus(1,4,6,7,10); //you can put more parameters into function Plus
+    return 0;
+}
+```
