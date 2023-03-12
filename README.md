@@ -485,7 +485,8 @@ T Plus(T start, Args... args){
 
 int main()
 {
-    std::cout << Plus(1,4,6,7,10); //you can put more parameters into function Plus
+    std::cout << Plus(1,4,6,7,10) <<std::endl; //you can put more parameters into function Plus
+    std::cout << Plus<double>(1,4.5,6,7.3,10);
     return 0;
 }
 ```
