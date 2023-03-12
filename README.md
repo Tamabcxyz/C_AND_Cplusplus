@@ -431,3 +431,41 @@ int main()
     return 0;
 }
 ```
+#### pointer to implement into class
+```
+#include <iostream>
+#include <string>
+#include <memory>
+class Person{
+    public:
+    Person(std::string, int);
+    ~Person();
+    std::string Get();
+    private:
+    class Implement; //inside class Person
+    //Implement* imp_t;
+    std::unique_ptr<Implement> imp_t;
+};
+//declare Implement class
+class Person::Implement{
+    public:
+    std::string m_name;
+    int m_age;
+};
+Person::Person(std::string name, int age){
+    //imp_t = new Implement;
+    imp_t = std::make_unique<Implement>();
+    imp_t->m_name = name;
+    imp_t->m_age = age;
+}
+Person::~Person(){ 
+    //delete imp_t; 
+}
+std::string Person::Get(){ return imp_t->m_name + " : "+ std::to_string(imp_t->m_age); }
+int main()
+{
+    Person a("Tam", 23);
+    std::cout << a.Get();
+    return 0;
+}
+```
