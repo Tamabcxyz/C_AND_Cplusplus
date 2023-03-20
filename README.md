@@ -490,3 +490,24 @@ int main()
     return 0;
 }
 ```
+#### bind and placeholders
+```
+#include <iostream>
+#include <functional> //for bind
+using namespace std;
+using namespace std::placeholders;
+void plusfunc(int a, int b, int c){
+    std::cout << (a) << std::endl;
+    std::cout << (b) << std::endl;
+    std::cout << (c) << std::endl;
+    std::cout << (a+b+c) << std::endl;
+}
+int main()
+{
+    auto f = std::bind(plusfunc, 5,2,_1); //_1 recieve value of param when f call
+    auto k = std::bind(plusfunc, 5,_1,_1);
+    f(10); // 5+2+10
+    k(1); //5+1+1
+    return 0;
+}
+```
