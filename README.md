@@ -506,8 +506,12 @@ int main()
 {
     auto f = std::bind(plusfunc, 5,2,_1); //_1 recieve value of param when f call
     auto k = std::bind(plusfunc, 5,_1,_1);
+    auto q = std::bind(plusfunc, _2, 2, _1); //_2 recieve value of 2th param when q call
+    auto e = std::bind(plusfunc, _1, 2, _2);
     f(10); // 5+2+10
     k(1); //5+1+1
+    q(1,13); //13+2+1
+    e(1,13); // 1+2+13
     return 0;
 }
 ```
