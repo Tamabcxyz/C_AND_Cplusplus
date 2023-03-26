@@ -515,3 +515,18 @@ int main()
     return 0;
 }
 ```
+#### What does “typedef void (*Something) ()” mean in C?
+void (*Something) () declares Something as type alias to pointer to function taking variadic arguments (0 to any number) and returning void.
+Now void Something() declares Something as function returning void. To declare a pointer to function one can use void (*Something)() and to declare it a typedef, use typedef void (*Something) ().
+```
+void somefunc(/* I hate empty argument list in C, put a void here */ ) 
+{ 
+  … 
+} 
+… 
+typedef void (*Something) (); 
+… 
+Something something_fn_ptr = somefunc; 
+(*something_fn_ptr) (); /* If you are a novice */ 
+something_fn_ptr (); /* If you are modetately good or good in C */ 
+```
