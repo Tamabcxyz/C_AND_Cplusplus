@@ -530,8 +530,8 @@ Something something_fn_ptr = somefunc;
 (*something_fn_ptr) (); /* If you are a novice */ 
 something_fn_ptr (); /* If you are modetately good or good in C */ 
 ```
-####Design pattern
-##1.Singleton pattern
+#### Design pattern
+## 1.Singleton pattern
 ```
 #include <iostream>
 #include <string>
@@ -582,7 +582,7 @@ int main()
     return 0;
 }
 ```
-#Solved the problem in mutiple thread
+# Solved the problem in mutiple thread
 ```
 #include <iostream>
 #include <string>
