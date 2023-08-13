@@ -530,7 +530,8 @@ Something something_fn_ptr = somefunc;
 (*something_fn_ptr) (); /* If you are a novice */ 
 something_fn_ptr (); /* If you are modetately good or good in C */ 
 ```
-### Design pattern
+### Design pattern (creational, structural, behavioral)
+#### Creational design pattern
 ###### 1.Singleton pattern
 ```
 #include <iostream>
@@ -637,5 +638,128 @@ int main()
     t1.join();
     t2.join();
     return 0;
+}
+```
+###### 1.Factory pattern
+```
+#include <iostream>
+using namespace std;
+
+class Item{
+    public:
+    virtual void print_object() = 0;
+};
+class IPhone12 : public Item{
+    public:
+    void print_object(){ std::cout << "IPhone12" << std::endl; }
+};
+class IPhone13 : public Item{
+    public:
+    void print_object(){ std::cout << "IPhone13" << std::endl; }
+};
+
+class Factory{
+    public:
+    Item* createIPhone(std::string str){
+        if(str =="IPhone12"){ return new IPhone12; }
+        if(str =="IPhone13"){ return new IPhone13; }
+        return nullptr;
+    }
+};
+
+class App{
+    Factory fac;
+    public:
+    Item* createItem(std::string str){
+        return fac.createIPhone(str);
+    }
+};
+
+int main()
+{
+    App app;
+    auto object = app.createItem("IPhone13");
+    object->print_object(); // IPhone13
+    return 0;
+}
+```
+###### 1.Abstract factory pattern
+```
+// make_unique only using -std=c++14 for compiler
+#include <iostream>
+#include <memory>
+using namespace std;
+
+class CheckBox {
+    public:
+    virtual void pain() = 0;
+};
+
+class Button {
+    public:
+    virtual void pain() = 0;
+};
+
+class WindowCheckBox : public CheckBox {
+    public:
+    void pain() override {
+        std::cout << "WindowCheckBox\n";
+    }
+};
+class LinuxCheckBox : public CheckBox {
+    public:
+    void pain() override{
+        std::cout << "LinuxCheckBox\n";
+    }
+};
+
+class WindowButton : public Button {
+    public:
+    void pain() override{
+        std::cout << "WindowButton\n";
+    }
+};
+class LinuxButton : public Button {
+    public:
+    void pain() override{
+        std::cout << "LinuxButton\n";
+    }
+};
+
+class GUIFactory {
+    public:
+    virtual std::unique_ptr<CheckBox> createCheckBox()=0;
+    virtual std::unique_ptr<Button> createButton()=0;
+};
+
+class WindowTemplate : public GUIFactory {
+    public:
+    std::unique_ptr<CheckBox> createCheckBox() override {
+        return std::make_unique<WindowCheckBox>();
+    }
+    std::unique_ptr<Button> createButton() override {
+        return std::make_unique<WindowButton>();
+    }
+};
+
+class LinuxTemplate : public GUIFactory {
+    public:
+    std::unique_ptr<CheckBox> createCheckBox() override {
+        return std::make_unique<LinuxCheckBox>();
+    }
+    std::unique_ptr<Button> createButton() override {
+        return std::make_unique<LinuxButton>();
+    }
+};
+
+int main() {
+    std::unique_ptr<GUIFactory> gf;
+    gf = std::make_unique<LinuxTemplate>();
+    
+    auto button = gf->createButton();
+    auto checkbox = gf->createCheckBox();
+    
+    button->pain();// LinuxButton
+    checkbox->pain();// LinuxCheckBox
 }
 ```
