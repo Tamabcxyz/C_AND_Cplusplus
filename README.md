@@ -763,3 +763,112 @@ int main() {
     checkbox->pain();// LinuxCheckBox
 }
 ```
+###### 1.Builder pattern
+```
+#include <iostream>
+#include <string>
+//object need to create
+class Pizza{
+private:
+    std::string dough_;
+    std::string sauce_;
+    std::string topping_;
+    
+public:
+    void setDough(std::string dough){
+        dough_ = dough;
+    }
+    void setSauce(std::string sauce){
+        sauce_ = sauce;
+    }
+    void setTopping(std::string topping){
+        topping_ = topping;
+    }
+    void disPlay(){
+        std::cout << "Dough: " << dough_ << ", Sauce: " << sauce_ << ", Topping: " << topping_ << std::endl;
+    }
+};
+//abstract builder
+class PizzaBuilder{
+    public:
+    virtual void buildDough(std::string dough) = 0;
+    virtual void buildSauce(std::string sauce) = 0;
+    virtual void buildTopping(std::string topping) = 0;
+    virtual Pizza getPizza() = 0;
+};
+
+class TamPizza : public PizzaBuilder{
+private:
+    Pizza pizza_;
+public:
+   void buildDough(std::string dough) override{
+       pizza_.setDough(dough);
+   }
+   void buildSauce(std::string sauce) override{
+       pizza_.setSauce(sauce);
+   }
+   void buildTopping(std::string topping) override{
+       pizza_.setTopping(topping);
+   }
+   Pizza getPizza() override{
+       return pizza_;
+   }
+};
+
+class TaiPizza : public PizzaBuilder{
+private:
+    Pizza pizza_;
+    int code;
+public:
+   void buildDough(std::string dough) override{
+       pizza_.setDough(dough);
+   }
+   void buildSauce(std::string sauce) override{
+       pizza_.setSauce(sauce);
+   }
+   void buildTopping(std::string topping) override{
+       pizza_.setTopping(topping);
+   }
+   Pizza getPizza() override{
+       return pizza_;
+   }
+   void disPlayCode(){
+       std::cout << "Tai have code: " << code << std::endl;
+   }
+};
+
+class Shipper{
+    private:
+    PizzaBuilder* builder_;
+    public:
+    void setPizza(PizzaBuilder* builder){
+        builder_ = builder;
+    }
+    
+    Pizza getPizza(){
+        return builder_->getPizza();
+    }
+};
+
+int main(){
+    Shipper shipper;
+    
+    TamPizza tPizza;
+    tPizza.buildDough("Tam dough");
+    tPizza.buildSauce("Tam sauce");
+    tPizza.buildTopping("Tam topping");
+    shipper.setPizza(&tPizza);
+    Pizza tm = shipper.getPizza();
+    tm.disPlay(); //Dough: Tam dough, Sauce: Tam sauce, Topping: Tam topping
+    
+    TaiPizza taiPizza;
+    taiPizza.buildDough("Tai dough");
+    taiPizza.buildSauce("Tai sauce");
+    taiPizza.buildTopping("Tai topping");
+    shipper.setPizza(&taiPizza);
+    Pizza ti = shipper.getPizza();
+    ti.disPlay(); //Dough: Tai dough, Sauce: Tai sauce, Topping: Tai topping
+    return 0;
+}
+```
+
