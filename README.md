@@ -341,6 +341,23 @@ class C {
 void f(const C* this, int x);
 ==> **const** after f() mean the method cannot modify the object on which it was invoked.
 ```
+5. const* and *const
+```
+#include <iostream>
+// "const char *" can be write like this "char const *" : a pointer to const character
+// "char * const" a const pointer to a character
+// => const before * it's const of variable, const after * it's const of pointer
+int main() {
+    char i = 'A';
+    char t = 'T';
+    //const char *ptr1 = &i;
+    //*ptr1 = 'B'; //can't do that because "const char *ptr1 = &i;" mark as const char we can modify i
+    // char * const ptr2 = &i;
+    // ptr2 = &t; // error because "char * const ptr2 = &i;" mark as a const pointer it can not point to another address
+
+    return 0;
+}
+```
 #### static_pointer_cast and dynamic_pointer_cast
 ```
 #include <iostream>
