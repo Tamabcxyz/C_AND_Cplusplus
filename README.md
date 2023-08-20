@@ -549,114 +549,6 @@ something_fn_ptr (); /* If you are modetately good or good in C */
 ```
 ### Design pattern (creational, structural, behavioral)
 #### Creational design pattern
-###### 1.Singleton pattern
-```
-#include <iostream>
-#include <string>
-#include <thread>
-
-using namespace std;
-class Singleton{
-  private:
-  static Singleton* instance; //common resources
-  std::string name;
-  Singleton(){}; //have to put in private to prevent call and created instance
-  Singleton(std::string value) : name{value}{};
-  public:
-  Singleton(Singleton&) = delete; //need to delete copy constructor
-  Singleton* operator=(Singleton&) = delete; //need to delete copy assignment
-  static Singleton* getSingletonInstance(std::string value); //function static to get instance
-  std::string getName();
-};
-
-Singleton* Singleton::getSingletonInstance(std::string value){
-    if(instance==nullptr){
-        instance = new Singleton(value);
-    }
-    return instance;
-}
-string Singleton::getName(){
-    return name;
-}
-
-Singleton* Singleton::instance=nullptr; //have to initial in global
-
-void processOne(){
-    Singleton* instance = Singleton::getSingletonInstance("Bob");
-    std::cout << instance->getName() <<std::endl;
-}
-void processTwo(){
-    Singleton* instance = Singleton::getSingletonInstance("Bi");
-    std::cout << instance->getName() <<std::endl;
-}
-
-int main()
-{
-    //this is a weak of singleton in multiple thread 
-    std::thread t1(processOne);
-    std::thread t2(processTwo);
-    t1.join();
-    t2.join();
-    return 0;
-}
-```
-###### Solved the problem in mutiple thread
-```
-#include <iostream>
-#include <string>
-#include <thread>
-#include <mutex>
-
-using namespace std;
-class Singleton{
-  private:
-  static Singleton* instance; //common resources
-  static std::mutex mutex_; //for solve the problem in thread
-  std::string name;
-  Singleton(){}; //have to put in private to prevent call and created instance
-  Singleton(std::string value) : name{value}{};
-  public:
-  Singleton(Singleton&) = delete; //need to delete copy constructor
-  Singleton* operator=(Singleton&) = delete; //need to delete copy assignment
-  static Singleton* getSingletonInstance(std::string value); //function static to get instance
-  std::string getName();
-};
-
-Singleton* Singleton::getSingletonInstance(std::string value){
-    if(instance==nullptr){
-        std::lock_guard<std::mutex> lock(mutex_); //to make sure one instance created
-        if(instance == nullptr){
-            instance = new Singleton(value);
-        }
-    }
-    return instance;
-}
-string Singleton::getName(){
-    return name;
-}
-
-Singleton* Singleton::instance=nullptr; //have to initial in global
-mutex Singleton::mutex_;
-
-void processOne(){
-    Singleton* instance = Singleton::getSingletonInstance("Bob");
-    std::cout << instance->getName() <<std::endl;
-}
-void processTwo(){
-    Singleton* instance = Singleton::getSingletonInstance("Bi");
-    std::cout << instance->getName() <<std::endl;
-}
-
-int main()
-{
-    //solved with mutex and lock_guard 
-    std::thread t1(processOne);
-    std::thread t2(processTwo);
-    t1.join();
-    t2.join();
-    return 0;
-}
-```
 ###### 1.Factory pattern
 ```
 #include <iostream>
@@ -700,7 +592,7 @@ int main()
     return 0;
 }
 ```
-###### 1.Abstract factory pattern
+###### 2.Abstract factory pattern
 ```
 // make_unique only using -std=c++14 for compiler
 #include <iostream>
@@ -780,7 +672,7 @@ int main() {
     checkbox->pain();// LinuxCheckBox
 }
 ```
-###### 1.Builder pattern
+###### 3.Builder pattern
 ```
 #include <iostream>
 #include <string>
@@ -888,7 +780,7 @@ int main(){
     return 0;
 }
 ```
-###### 1.Prototype pattern
+###### 4.Prototype pattern
 ```
 #include <iostream>
 #include <unordered_map>
@@ -954,3 +846,112 @@ int main(){
     delete s;
 }
 ```
+###### 5.Singleton pattern
+```
+#include <iostream>
+#include <string>
+#include <thread>
+
+using namespace std;
+class Singleton{
+  private:
+  static Singleton* instance; //common resources
+  std::string name;
+  Singleton(){}; //have to put in private to prevent call and created instance
+  Singleton(std::string value) : name{value}{};
+  public:
+  Singleton(Singleton&) = delete; //need to delete copy constructor
+  Singleton* operator=(Singleton&) = delete; //need to delete copy assignment
+  static Singleton* getSingletonInstance(std::string value); //function static to get instance
+  std::string getName();
+};
+
+Singleton* Singleton::getSingletonInstance(std::string value){
+    if(instance==nullptr){
+        instance = new Singleton(value);
+    }
+    return instance;
+}
+string Singleton::getName(){
+    return name;
+}
+
+Singleton* Singleton::instance=nullptr; //have to initial in global
+
+void processOne(){
+    Singleton* instance = Singleton::getSingletonInstance("Bob");
+    std::cout << instance->getName() <<std::endl;
+}
+void processTwo(){
+    Singleton* instance = Singleton::getSingletonInstance("Bi");
+    std::cout << instance->getName() <<std::endl;
+}
+
+int main()
+{
+    //this is a weak of singleton in multiple thread 
+    std::thread t1(processOne);
+    std::thread t2(processTwo);
+    t1.join();
+    t2.join();
+    return 0;
+}
+```
+###### Solved the problem in mutiple thread
+```
+#include <iostream>
+#include <string>
+#include <thread>
+#include <mutex>
+
+using namespace std;
+class Singleton{
+  private:
+  static Singleton* instance; //common resources
+  static std::mutex mutex_; //for solve the problem in thread
+  std::string name;
+  Singleton(){}; //have to put in private to prevent call and created instance
+  Singleton(std::string value) : name{value}{};
+  public:
+  Singleton(Singleton&) = delete; //need to delete copy constructor
+  Singleton* operator=(Singleton&) = delete; //need to delete copy assignment
+  static Singleton* getSingletonInstance(std::string value); //function static to get instance
+  std::string getName();
+};
+
+Singleton* Singleton::getSingletonInstance(std::string value){
+    if(instance==nullptr){
+        std::lock_guard<std::mutex> lock(mutex_); //to make sure one instance created
+        if(instance == nullptr){
+            instance = new Singleton(value);
+        }
+    }
+    return instance;
+}
+string Singleton::getName(){
+    return name;
+}
+
+Singleton* Singleton::instance=nullptr; //have to initial in global
+mutex Singleton::mutex_;
+
+void processOne(){
+    Singleton* instance = Singleton::getSingletonInstance("Bob");
+    std::cout << instance->getName() <<std::endl;
+}
+void processTwo(){
+    Singleton* instance = Singleton::getSingletonInstance("Bi");
+    std::cout << instance->getName() <<std::endl;
+}
+
+int main()
+{
+    //solved with mutex and lock_guard 
+    std::thread t1(processOne);
+    std::thread t2(processTwo);
+    t1.join();
+    t2.join();
+    return 0;
+}
+```
+
