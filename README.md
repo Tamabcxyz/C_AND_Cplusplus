@@ -888,4 +888,69 @@ int main(){
     return 0;
 }
 ```
+###### 1.Prototype pattern
+```
+#include <iostream>
+#include <unordered_map>
+//Prototype is a creational design pattern that allows cloning objects, even complex ones, without coupling to their specific classes.
 
+class Shape{
+  public:
+  virtual ~Shape() {}
+  virtual Shape* clone() const = 0;
+  virtual void draw() const = 0;
+};
+
+class Circle : public Shape {
+    private:
+    int radius;
+    public:
+    Circle(int r) : radius(r) {}
+    Shape* clone() const override{
+        return new Circle(*this);
+    }
+    void draw() const override{
+        std::cout << "Draw from Circle radius is: " << radius << std::endl;
+    }
+};
+
+class Square : public Shape{
+    private:
+    int size;
+    public:
+    Square(int s) : size(s){}
+    Shape* clone() const override{
+        return new Square(*this);
+    }
+    void draw() const override{
+        std::cout << "Draw from Square size is: " << size << std::endl;
+    }
+};
+
+class ShapeCache{
+    private:
+    std::unordered_map<std::string, Shape*> cache;
+    public:
+    Shape* getShape(const std::string &type){
+        return cache[type]->clone();
+    }
+    void loadCache(){
+        cache["circle"] = new Circle(5);
+        cache["square"] = new Square(10);
+    }
+};
+
+int main(){
+    ShapeCache sc;
+    sc.loadCache();
+    
+    Shape* c = sc.getShape("circle");
+    Shape* s = sc.getShape("square");
+    
+    c->draw();
+    s->draw();
+    
+    delete c;
+    delete s;
+}
+```
