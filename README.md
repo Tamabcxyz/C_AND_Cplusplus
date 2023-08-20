@@ -548,8 +548,8 @@ Something something_fn_ptr = somefunc;
 something_fn_ptr (); /* If you are modetately good or good in C */ 
 ```
 ### Design pattern (creational, structural, behavioral)
-#### Creational design pattern
-###### 1.Factory pattern
+#### Creational design pattern: how to create object
+###### 1.Factory method pattern: is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
 ```
 #include <iostream>
 using namespace std;
@@ -592,7 +592,7 @@ int main()
     return 0;
 }
 ```
-###### 2.Abstract factory pattern
+###### 2.Abstract factory pattern: is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
 ```
 // make_unique only using -std=c++14 for compiler
 #include <iostream>
@@ -672,7 +672,7 @@ int main() {
     checkbox->pain();// LinuxCheckBox
 }
 ```
-###### 3.Builder pattern
+###### 3.Builder pattern: is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
 ```
 #include <iostream>
 #include <string>
@@ -780,11 +780,10 @@ int main(){
     return 0;
 }
 ```
-###### 4.Prototype pattern
+###### 4.Prototype pattern: is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
 ```
 #include <iostream>
 #include <unordered_map>
-//Prototype is a creational design pattern that allows cloning objects, even complex ones, without coupling to their specific classes.
 
 class Shape{
   public:
@@ -846,7 +845,7 @@ int main(){
     delete s;
 }
 ```
-###### 5.Singleton pattern
+###### 5.Singleton pattern: is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
 ```
 #include <iostream>
 #include <string>
