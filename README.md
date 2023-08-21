@@ -549,7 +549,7 @@ something_fn_ptr (); /* If you are modetately good or good in C */
 ```
 ### Design pattern (creational, structural, behavioral)
 #### Creational design pattern: how to create object
-###### 1.Factory method pattern: is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
+###### 1.Factory method pattern: is a creational design pattern that provides **an interface for creating objects in a superclass**, but allows **subclasses to alter the type of objects that will be created**.
 ```
 #include <iostream>
 using namespace std;
@@ -592,7 +592,7 @@ int main()
     return 0;
 }
 ```
-###### 2.Abstract factory pattern: is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
+###### 2.Abstract factory pattern: is a creational design pattern that lets you produce **families** of related objects **without specifying their concrete classes**.
 ```
 // make_unique only using -std=c++14 for compiler
 #include <iostream>
@@ -635,6 +635,7 @@ class LinuxButton : public Button {
     }
 };
 
+//families of interface CheckBox, Button
 class GUIFactory {
     public:
     virtual std::unique_ptr<CheckBox> createCheckBox()=0;
@@ -672,7 +673,7 @@ int main() {
     checkbox->pain();// LinuxCheckBox
 }
 ```
-###### 3.Builder pattern: is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+###### 3.Builder pattern: is a creational design pattern that lets you **construct complex objects step by step**. The pattern allows you to produce different types and representations of an object using the same construction code.
 ```
 #include <iostream>
 #include <string>
@@ -780,7 +781,7 @@ int main(){
     return 0;
 }
 ```
-###### 4.Prototype pattern: is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
+###### 4.Prototype pattern: is a creational design pattern that lets you **copy existing objects**  without making your code dependent on their classes.
 ```
 #include <iostream>
 #include <unordered_map>
