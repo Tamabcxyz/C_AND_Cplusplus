@@ -954,4 +954,56 @@ int main()
     return 0;
 }
 ```
+#### Structual design pattern: simlify the relationship between class and object to make the system flexible and efficient
+1. Adapter
+```
+#include <iostream>
+#include <algorithm>
+
+class Target {
+ public:
+  virtual ~Target() = default;
+  virtual std::string Request() const {
+    return "Target: The default target's behavior.";
+  }
+};
+
+// Client using Request from Target
+void ClientCode(const Target *target) {
+  std::cout << target->Request() << std::endl;
+}
+
+// Adaptee have SpecificRequest and client wanna using it
+class Adaptee {
+ public:
+  std::string SpecificRequest() const {
+    return ".eetpadA eht fo roivaheb laicepS";
+  }
+};
+
+// Need to create a class call Adapter
+class Adapter : public Target {
+ private:
+  Adaptee *adaptee_;
+
+ public:
+  Adapter(Adaptee *adaptee) : adaptee_(adaptee) {}
+  std::string Request() const override {
+    std::string to_reverse = this->adaptee_->SpecificRequest();
+    std::reverse(to_reverse.begin(), to_reverse.end());
+    return "Adapter: (TRANSLATED) " + to_reverse;
+  }
+};
+
+int main(){
+    Target *t = new Target;
+    ClientCode(t); // Target: The default target's behavior.
+    
+    //client code using SpecificRequest via the Adapter 
+    Adaptee *adaptee = new Adaptee;
+    Adapter *adap = new Adapter(adaptee);
+    ClientCode(adap); // Adapter: (TRANSLATED) Special behavior of the Adaptee.
+    return 0;
+}
+```
 
