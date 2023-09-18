@@ -577,3 +577,56 @@ Result: D </br>
 Explain: arr is initial with 10 elements have type interger; B inherit from A, then size of B is 40, the same with C, D inherit for B and C therefore 40 + 40 = 80
 </details>
 
+#### Q24: choose correct answer (★★★★★)
+```
+#include <iostream>
+using namespace std;
+class A{
+    private:
+    int arr[10];
+};
+class B : virtual public A{};
+class C : virtual public A{};
+class D : public B, public C{};
+int main()
+{
+    std::cout << sizeof(D) << std::endl;
+    return 0;
+}
+// A. Compile error
+// B. 56
+// C. Compile success
+// D. 40
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: Both classes B and C virtually inherit from class A. This means they share a single instance of the base class A. Virtual inheritance is used to ensure that there's only one copy of the base class A in the hierarchy. Class D inherits from both B and C. D also shares the same virtual base class A. That's the reason why D have 40 bytes, but 40 not exactly bytes in this case. Each virtual base class subobject of A adds some overhead, which includes information for runtime type identification (RTTI) and other bookkeeping data. This overhead is compiler-dependent and is typically a few bytes. 40 bytes (for int a[10]) X bytes (overhead for the first virtual base class A) Y bytes (overhead for the second virtual base class A). So the result is 40 + X + Y, In this case X + Y = 16
+</details>
+
+#### Q25: choose correct answer (★★★★★)
+```
+#include <iostream>
+using namespace std;
+class A{
+    private:
+    int arr[10];
+};
+class B : virtual public A{};
+class C : public A{};
+class D : public B, public C{};
+int main()
+{
+    std::cout << sizeof(D) << std::endl;
+    return 0;
+}
+// A. Compile error
+// B. 56
+// C. Compile success
+// D. 88
+```
+<details>
+<summary>Result and explain</summary>
+Result: D </br>
+Explain: A class have arr is 40 bytes, B virtually inherit from class A so B 48 bytes. C inherit from class A 40 bytes. D inherit from two class B and C 48 + 40 = 88
+</details>
