@@ -4,7 +4,7 @@
 ★★★★☆: 4 stars for hard            
 ★★★★★: 5 stars extreme         
 
-#### Q?: what is question? (rated)
+#### Q?: Choose correct answer (rated)
 ```
 pasted code demo
 ```
@@ -14,7 +14,7 @@ Result: ? </br>
 Explain: 
 </details>
 
-#### Q1: Return type of printf (★★☆☆☆)
+#### Q1: Choose the correct answer (★★☆☆☆)
 ```
 #include <stdio.h>
 int main()
@@ -32,7 +32,7 @@ Result: B  </br>
 Explain: the return type of the function printf is an int value (number character in represent string)
 </details>
 
-#### Q2: Return type of scanf (★★☆☆☆)
+#### Q2: Choose the correct answer (★★☆☆☆)
 ```
 #include <stdio.h>
 int main()
@@ -55,7 +55,7 @@ A positive integer: this means that scanf successfully matched and assigned valu
 EOF (End of File): scanf returns EOF when it encounters an error or reaches the end of the input stream. This typically happens when there's a mismatch between the format string and the input data or when there's an input error. EOF is usually defined as a negative integer constant.
 </details>
 
-#### Q3: How many bytes are allocated for a string (rated)
+#### Q3: Choose the correct answer (★★★☆☆)
 ```
 #include <stdio.h>
 int main()
@@ -76,7 +76,7 @@ Result: C </br>
 Explain: the size of s1 specifying with 20 bytes. s2 without specifying its size, the size is automatically determined based on the length of the string. The size of s3 is determined by the size of a pointer 4 bytes (32-bit system) or 8 bytes (64-bit system) 
 </details>
 
-#### Q4: Declaration vs Defination? (★☆☆☆☆)
+#### Q4: Choose the correct answer (★☆☆☆☆)
 ```
 #include <stdio.h>
 int i = 0; //define
@@ -95,7 +95,7 @@ Result: ? </br>
 Explain: A declaration introduces the name and type of a variable, function, or other program entity to the compiler without allocating memory or specifying its initial value. A definition not only declares the entity but also allocates memory (for variables) or provides the function body (for functions). It specifies the storage location and, for variables, an initial value
 </details>
 
-#### Q5: Char in c (★☆☆☆☆)
+#### Q5: Choose the correct answer (★☆☆☆☆)
 ```
 #include <stdio.h>
 int main(){
@@ -114,7 +114,7 @@ Result: D </br>
 Explain: x = c++ break down x=c, c=c+1, so now x='a' (convert 'a' to in = 97)
 </details>
 
-#### Q6: struct in c/c++ (★★★★★)
+#### Q6: Choose the correct answer (★★★★★)
 ```
 #include <stdio.h>
 typedef struct{
@@ -138,7 +138,7 @@ Result: B </br>
 Explain: The above code can compile successfully in C++, but it fails in the C compiler, In C, designated initializers for structures are not supported, which means you cannot initialize individual members of a structure by specifying their names within curly braces.
 </details>
 
-#### Q7: struct in c/c++ (★★★★☆)
+#### Q7: Choose the correct answer (★★★★☆)
 ```
 #include <stdio.h>
 typedef struct{
@@ -162,7 +162,7 @@ Result: C </br>
 Explain: first number will initialize for first member of struct
 </details>
 
-#### Q8: Relational operators (★★★☆☆)
+#### Q8: Choose the correct answer (★★★☆☆)
 ```
 #include <stdio.h>
 int main(){
@@ -184,7 +184,7 @@ Result: 0 </br>
 Explain: d = a < b > c break down code 1 < 2 return 1 (true), 1 > 3 return 0 (false)
 </details>
 
-#### Q9: just for fun (★★☆☆☆)
+#### Q9: Choose the correct answer (★★☆☆☆)
 ```
 #include <stdio.h>
 int main(){
@@ -203,7 +203,7 @@ Result: D </br>
 Explain: 
 </details>
 
-#### Q10: just for fun (★★☆☆☆)
+#### Q10: Choose the correct answer (★★☆☆☆)
 ```
 #include <stdio.h>
 int main(){
@@ -221,7 +221,7 @@ Result: B </br>
 Explain: 
 </details>
 
-#### Q11: character in c (★★★☆☆)
+#### Q11: Choose the correct answer (★★★☆☆)
 ```
 #include <stdio.h>
 int main(){
@@ -240,7 +240,7 @@ Result: D </br>
 Explain: 'abc' is not a valid character literal but the compiler try to initialize the c variable by last charater
 </details>
 
-#### Q12: static_cast and dynamic_cast (★★★★☆)
+#### Q12: Choose the correct answer (★★★★☆)
 ```
 #include <iostream>
 using namespace std;
@@ -266,7 +266,7 @@ Result: B </br>
 Explain: can't cast b to D2 because b pointer points to D1 that's the reason output d2 is 0
 </details>
 
-#### Q13: local variable (rated)
+#### Q13: Choose the correct answer (★★★☆☆)
 ```
 #include <iostream>
 using namespace std;
@@ -290,7 +290,7 @@ Result: D </br>
 Explain: to call a local variable we can use ::
 </details>
 
-#### Q14: sizeof (★★★☆☆)
+#### Q14: Choose the correct answer (★★★☆☆)
 ```
 #include <stdio.h>
 
@@ -309,7 +309,7 @@ Result: A </br>
 Explain: size of the integer is 4, size of pointer is depend on the system if system 32 bit size of pointer is 4, 8 for 64 bit
 </details>
 
-#### Q15: find out the line error (★★★☆☆)
+#### Q15: Choose the correct answer (★★★☆☆)
 ```
 #include <iostream>
 using namespace std;
@@ -332,7 +332,7 @@ Result: D </br>
 Explain: line 5, 6 is valid, line 7 only compile with c++ compiler (it's syntax of c++ features), line 8 error because we can't create lvalue reference to rvalue
 </details>
 
-#### Q16: static data member (★★★★☆)
+#### Q16: Choose the correct answer (★★★★☆)
 ```
 #include <iostream>
 using namespace std;
@@ -359,7 +359,7 @@ Result: B </br>
 Explain: Static data members don't occupy the size of the class.
 </details>
 
-#### Q17: return array (★★★★☆)
+#### Q17: Choose the correct answer (★★★★☆)
 ```
 #include <iostream>
 using namespace std;
@@ -384,7 +384,7 @@ Result: B </br>
 Explain: arr in func store in stack after execute arr will be free
 </details>
 
-#### Q18: return array (★★★★☆)
+#### Q18: Choose the correct answer (★★★★☆)
 ```
 #include <iostream>
 using namespace std;
@@ -409,7 +409,7 @@ Result: C </br>
 Explain: arr in func is a static variable; it's not stored in the stack; it's stored in a memory area called the global memory area.
 </details>
 
-#### Q19: constructor destructor of class (★★★☆☆)
+#### Q19: Choose the correct answer (★★★☆☆)
 ```
 #include <iostream>
 using namespace std;
@@ -453,7 +453,7 @@ Result: C </br>
 Explain: A derived class will call the constructor of the base class first.
 </details>
 
-#### Q20: choose correct answer (★★★☆☆)
+#### Q20: Choose the correct answer (★★★☆☆)
 ```
 #include <iostream>
 using namespace std;
@@ -485,7 +485,7 @@ Result: B </br>
 Explain: compiler auto-implicitly converts 20 and assigns it to base class (it's bad, need explicit keyword in constructor of Base class to fix it)
 </details>
 
-#### Q21: choose correct answer (★★★☆☆)
+#### Q21: Choose the correct answer (★★★☆☆)
 ```
 #include <iostream>
 using namespace std;
@@ -517,7 +517,7 @@ Result: A </br>
 Explain: could not convert ‘20’ from ‘int’ to ‘Base’
 </details>
 
-#### Q22: choose correct answer (★★★★☆)
+#### Q22: Choose the correct answer (★★★★☆)
 ```
 #include <iostream>
 using namespace std;
@@ -550,7 +550,7 @@ Result: B </br>
 Explain: in BaseB have implemented operator BaseA that's convert BaseB class to BaseA class (conversion operator)
 </details>
 
-#### Q23: choose correct answer (★★★☆☆)
+#### Q23: Choose the correct answer (★★★☆☆)
 ```
 #include <iostream>
 using namespace std;
@@ -577,7 +577,7 @@ Result: D </br>
 Explain: arr is initial with 10 elements have type interger; B inherit from A, then size of B is 40, the same with C, D inherit for B and C therefore 40 + 40 = 80
 </details>
 
-#### Q24: choose correct answer (★★★★★)
+#### Q24: Choose the correct answer (★★★★★)
 ```
 #include <iostream>
 using namespace std;
@@ -604,7 +604,7 @@ Result: B </br>
 Explain: Both classes B and C virtually inherit from class A. This means they share a single instance of the base class A. Virtual inheritance is used to ensure that there's only one copy of the base class A in the hierarchy. Class D inherits from both B and C. D also shares the same virtual base class A. That's the reason why D have 40 bytes, but 40 not exactly bytes in this case. Each virtual base class subobject of A adds some overhead, which includes information for runtime type identification (RTTI) and other bookkeeping data. This overhead is compiler-dependent and is typically a few bytes. 40 bytes (for int a[10]) X bytes (overhead for the first virtual base class A) Y bytes (overhead for the second virtual base class A). So the result is 40 + X + Y, In this case X + Y = 16
 </details>
 
-#### Q25: choose correct answer (★★★★★)
+#### Q25: Choose the correct answer (★★★★★)
 ```
 #include <iostream>
 using namespace std;
@@ -629,4 +629,293 @@ int main()
 <summary>Result and explain</summary>
 Result: D </br>
 Explain: A class have arr is 40 bytes, B virtually inherit from class A so B 48 bytes. C inherit from class A 40 bytes. D inherit from two class B and C 48 + 40 = 88
+</details>
+
+#### Q26: Choose the correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  public:
+  void call(){ std::cout << "call A" << std::endl;  }
+};
+class B : public A{
+  public:
+  void call(){ std::cout << "call B" << std::endl;  }
+};
+
+class C : public B{};
+
+int main()
+{
+    C c;
+    c.call();
+    return 0;
+}
+// A. Compile error
+// B. call B
+// C. call A
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: Because that's the behavior of inheritant C inheriting from B and B inheriting from A, object C will find the call function directly if B does not have a call function; if B does not have a call function, it will find directly if B is A, and check if A class has a call function. In this case, B class has a call function, therefore the correct answer is B.
+</details>
+
+#### Q27: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class Base{
+  public:
+  Base(){ std::cout << "Constructor Base" << std::endl; }
+};
+typedef Base* pointerBase;
+int main()
+{
+   pointerBase p1, p2;
+   return 0;
+}
+// A. Compile error
+// B. The constructor will call two times
+// C. The constructor will call one time
+// D. The constructor not call
+```
+<details>
+<summary>Result and explain</summary>
+Result: D </br>
+Explain: pointerBase is an alias present for Base pointer, in this case both of them p1 and p2 is pointer it't not an object that's the reason why the constructor not call
+</details>
+
+#### Q28: Choose correct answer (★★★★☆)
+```
+#include <iostream>
+using namespace std;
+class Base{
+  public:
+  Base(){ std::cout << "Constructor Base" << std::endl; }
+};
+int main()
+{
+   Base* p1, p2;
+   return 0;
+}
+// A. Compile error
+// B. The constructor will call two times
+// C. The constructor will call one time
+// D. The constructor not call
+```
+<details>
+<summary>Result and explain</summary>
+Result: C </br>
+Explain: p1 is an pointer of Base class (it's not an oject not call contstructor), p2 is an object
+</details>
+
+#### Q29: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x, y;
+  public:
+  A(int a = 0, int b = 0) : x(a), y(b) {}
+  int getX(){ return x; }
+  int getY(){ return y; }
+  A& incX(){ x++; return *this; }
+  A& incY(){ y++; return *this; }
+};
+int main()
+{
+   A a;
+   a.incX().incY().incX();
+   std::cout << "x=" << a.getX() << ", y=" << a.getY() << std::endl;
+   return 0;
+}
+// A. Compile error
+// B. x=0, y=0
+// C. x=2, y=1
+```
+<details>
+<summary>Result and explain</summary>
+Result: C </br>
+Explain: after calling incX() or incY(), it's returning a reference to object A; therefore, we can call it many times (key word: chaining methods)
+</details>
+
+#### Q30: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x, y;
+  public:
+  A(int a = 0, int b = 0) : x(a), y(b) {}
+  int getX(){ return x; }
+  int getY(){ return y; }
+  A incX(){ x++; return *this; }
+  A incY(){ y++; return *this; }
+};
+int main()
+{
+   A a;
+   a.incX().incY().incX();
+   std::cout << "x=" << a.getX() << ", y=" << a.getY() << std::endl;
+   return 0;
+}
+// A. Compile error
+// B. x=1, y=0
+// C. x=1, y=1
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: after calling incX() or incY(), it's returning a new object A (key word: chaining methods)
+</details>
+
+#### Q31: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  A(int a = 0) : x(a) {}
+  void setX(int a) const { x = a; }
+  int getX(){ return x; }
+};
+int main()
+{
+   A a{};
+   a.setX(5);
+   std::cout << "x=" << a.getX() << std::endl;
+   return 0;
+}
+// A. Compile error
+// B. x=5
+// C. x=0
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: setX define as const function so only read can not modify the value
+</details>
+
+#### Q32: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  mutable int x;
+  public:
+  A(int a = 0) : x(a) {}
+  void setX(int a) const { x = a; }
+  int getX(){ return x; }
+};
+int main()
+{
+   A a{};
+   a.setX(10);
+   std::cout << "x=" << a.getX() << std::endl;
+   return 0;
+}
+// A. Compile error
+// B. x=10
+// C. x=0
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: setX define as const function so only read can not modify the value but key word mutable allow change value of x
+</details>
+
+#### Q33: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  A(int a = 0) : x(a) {}
+  int getX() { return x; }
+};
+int main()
+{
+   const A a{};
+   std::cout << "x=" << a.getX() << std::endl;
+   return 0;
+}
+// A. Compile error
+// B. x=0
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: object *a* mask as const so *a* can be call function const. The code above will raise error 
+</details>
+
+#### Q34: Choose correct answer (★★★★☆)
+```
+#include <iostream>
+using namespace std;
+class Myclass{
+  private:
+  int x;
+  public:
+  Myclass(int a = 1) : x(a) {}
+  operator double(){ return (double)x; }
+  operator int(){ return x; }
+};
+void func(double x){ std::cout << "double x=" << x << std::endl; }
+void func(int x){ std::cout << "int x=" << x << std::endl; }
+int main()
+{
+   Myclass m;
+   func(m);
+   return 0;
+}
+// A. Compile error
+// B. double x=0
+// C. int x=0
+// D. int x=1
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: in Myclass have define two conversion operator double and int when call func method the compiler can not decide what exactly function need to call
+</details>
+
+#### Q35: Choose correct answer (rated)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  void func(){ std::cout << "A" << std::endl; }
+};
+class B{
+  private:
+  int x;
+  public:
+  virtual void func(){ std::cout << "B" << std::endl; }
+};
+int main()
+{
+   std::cout << sizeof(A) << sizeof(B) << std::endl;
+   return 0;
+}
+// A. Compile error
+// B. 416
+// C. 48
+// D. 44
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: A is nomal class with member x have 4 bytes, B is a class with virtual function that will create pointer point to vtable (4+8) and add some padding that's the reason why size of B class is 16
 </details>
