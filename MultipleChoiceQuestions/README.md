@@ -4,7 +4,7 @@
 ★★★★☆: 4 stars for hard            
 ★★★★★: 5 stars extreme         
 
-#### Q?: Choose correct answer (rated)
+#### Q?: Choose correct answer (★★★☆☆)
 ```
 pasted code demo
 ```
@@ -919,3 +919,255 @@ int main()
 Result: B </br>
 Explain: A is nomal class with member x have 4 bytes, B is a class with virtual function that will create pointer point to vtable (4+8) and add some padding that's the reason why size of B class is 16
 </details>
+
+#### Q36: Choose correct answer (★★☆☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  public:
+    virtual void show(int a)=0;
+};
+class B : public A{
+  private:
+    int x;
+  public:
+    void show() { std::cout << "show" << std::endl; }
+};
+int main()
+{
+   B b;
+   b.show();
+   return 0;
+}
+// A. Compile error
+// B. show
+// C. Nothing print out
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: class B inherit from A but do not override show functin with parameter integer
+</details>
+
+#### Q37: Choose correct answer (★★☆☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  public:
+    virtual void show(int a)=0;
+};
+class B : public A{
+  private:
+    int x;
+  public:
+    void show() { std::cout << "show" << std::endl; }
+};
+int main()
+{
+   B *b;
+   return 0;
+}
+// A. Compile error
+// B. show
+// C. Nothing print out
+```
+<details>
+<summary>Result and explain</summary>
+Result: C </br>
+Explain: b is pointer not object so not call constructor
+</details>
+
+#### Q38: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  public:
+    A(){ std::cout << "Constructor A" << std::endl; }
+};
+int main()
+{
+   A a();
+   return 0;
+}
+// A. Compile error
+// B. Constructor A
+// C. Waring and nothing print
+```
+<details>
+<summary>Result and explain</summary>
+Result: C </br>
+Explain: empty parentheses were disambiguated as a function declaration
+</details>
+
+#### Q39: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private: 
+    int &x;
+  public:
+    A(int &a) : x(a){}
+    int &getX(){ return x; }
+};
+int main()
+{
+   int x = 10;
+   A a{x};
+   std::cout << a.getX();
+   x = 20;
+   std::cout << a.getX();
+   return 0;
+}
+// A. Compile error
+// B. 1010
+// C. 1020
+```
+<details>
+<summary>Result and explain</summary>
+Result: C </br>
+Explain: because x is reference variable
+</details>
+
+#### Q30: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private: 
+    static const int x = 100;
+  public:
+    static int getX(){ return x; }
+};
+int main()
+{
+   std::cout << A::getX();
+   return 0;
+}
+// A. Compile error
+// B. 100
+// C. 0
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: 
+</details>
+
+#### Q31: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private: 
+    static int x;
+  public:
+    void setX(int a) { x = a; }
+    static int getX() const{ return x; }
+};
+int A::x = 10;
+int main()
+{
+   std::cout << A::getX();
+   return 0;
+}
+// A. Compile error
+// B. 100
+// C. 10
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: static member function can't be const, function mask with const to protect no-const variable
+</details>
+
+#### Q30: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{ public: A(){ std::cout << "A"; } };
+class B{ public: B(){ std::cout << "B"; } };
+class C{ public: C(){ std::cout << "C"; } };
+int main()
+{
+   class A a;
+   B b;
+   class C c;
+   return 0;
+}
+// A. Compile error
+// B. ABC
+// C. B
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: would be fine when create an object with class keyword
+</details>
+
+#### Q31: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+using namespace std;
+class A{
+  private: 
+    int x;
+  public:
+    int &getX(){ return x; }
+    void printX() { std::cout << x <<std::endl; }
+};
+int main()
+{
+   class A a;
+   a.getX() = 10;
+   a.printX();
+   return 0;
+}
+// A. Compile error
+// B. 0
+// C. 10
+```
+<details>
+<summary>Result and explain</summary>
+Result: C </br>
+Explain: getX return a reference value of x can be change at caller side
+</details>
+
+#### Q32: Choose correct answer (★★★★☆)
+```
+#include <iostream>
+using namespace std;
+class C;
+class A{
+  private: 
+    int x;
+    void call() { std::cout << "call A" <<std::endl; }
+  friend C;
+};
+class B : public A{
+  public:
+    void call() { std::cout << "call B" <<std::endl; }
+};
+class C : public B{
+  public:
+    void call() { A::call(); }
+};
+int main()
+{
+   C c;
+   c.call();
+   return 0;
+}
+// A. Compile error
+// B. call A
+// C. call B
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: in class a we have friend C that's allow C class can access private of A class
+</details>
+
