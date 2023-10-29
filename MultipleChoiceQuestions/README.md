@@ -1171,3 +1171,174 @@ Result: B </br>
 Explain: in class a we have friend C that's allow C class can access private of A class
 </details>
 
+#### Q33: Choose correct answer (★★★☆☆)
+```
+#include <iostream>
+#include <functional>
+
+using namespace std;
+void func(int &a, int &b){
+    std::cout << "a=" << a << ", b=" << b << std::endl;
+    ++a;
+    ++b;
+}
+
+int main()
+{
+    int a = 1, b = 2;
+    std::function<void()> f = std::bind(func, std::ref(a),b);
+    
+    a = 10;
+    b = 20;
+    
+    std::cout << "Before: " << "a=" << a << ", b=" << b << std::endl;
+    f();
+    std::cout << "After: " << "a=" << a << ", b=" << b << std::endl;
+    
+    return 0;
+}
+// A. Compile error 
+// B. Before: a=10, b=20
+//    a=10, b=2
+//    After: a=11, b=20
+// C. Before: a=10, b=20
+//    a=10, b=20
+//    After: a=11, b=20
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: the result of Before *a* and *b* updated by main ==> a=10, b=20. When call f() at this time will execute func with param *a*  is passed by reference so it reflects the value of *a* in main, *b* is passed by value, so it retains its original value, which is 12 ==>a=10, b=2. when call f() *a* is +1 and value of b at this time is 20 ==>After: a=11, b=20
+</details>
+
+#### Q34: Choose correct answer (★★★☆☆)
+```
+// in extra.c file
+extern int intMain;
+void myFunc(){
+    intMain = 200;
+}
+
+// int main.cpp file
+#include <iostream>
+using namespace std;
+int intMain;
+void myFunc();
+int main()
+{
+    intMain = 100;
+    std::cout << "intMain=" << intMain << std::endl;
+    myFunc();
+    std::cout << "intMain=" << intMain << std::endl;
+    return 0;
+}
+
+// A. Compile error 
+// B. intMain=100
+//    intMain=200
+// C. intMain=100
+//    intMain=100
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: "extern" keyword provide the infomation intMain variable have declared from another location
+</details>
+
+#### Q35: Choose correct answer (★★★★☆)
+```
+// in extra.c file
+extern int intMain;
+void myFunc(){
+    intMain = 200;
+}
+
+// int main.cpp file
+#include <iostream>
+using namespace std;
+static int intMain;
+void myFunc();
+int main()
+{
+    intMain = 100;
+    std::cout << "intMain=" << intMain << std::endl;
+    myFunc();
+    std::cout << "intMain=" << intMain << std::endl;
+    return 0;
+}
+
+// A. Compile error 
+// B. intMain=100
+//    intMain=200
+// C. intMain=100
+//    intMain=100
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: local variable intMain declare is a static so it only modify inside main.cpp not outside (static variable can not be extern)
+</details>
+
+#### Q36: Choose correct answer (★★★☆☆)
+```
+// in extra.c file
+extern void change_system_lock(int system_lock);
+void myFunc(){
+    change_system_lock(0);
+}
+
+// int main.cpp file
+#include <iostream>
+using namespace std;
+void myFunc();
+void change_system_lock(int system_lock);
+int main()
+{
+    myFunc();
+    return 0;
+}
+void change_system_lock(int system_lock){
+    std::cout << "system_lock=" << system_lock << std::endl;
+}
+
+// A. Compile error 
+// B. system_lock=0
+
+```
+<details>
+<summary>Result and explain</summary>
+Result: B </br>
+Explain: we can use extern keyword to provide for compiler know the function have implement in another location
+</details>
+
+#### Q37: Choose correct answer (★★★★☆)
+```
+// in extra.c file
+extern void change_system_lock(int system_lock);
+void myFunc(){
+    change_system_lock(0);
+}
+
+// int main.cpp file
+#include <iostream>
+using namespace std;
+void myFunc();
+void change_system_lock(int system_lock);
+int main()
+{
+    myFunc();
+    return 0;
+}
+static void change_system_lock(int system_lock){
+    std::cout << "system_lock=" << system_lock << std::endl;
+}
+
+// A. Compile error 
+// B. system_lock=0
+
+```
+<details>
+<summary>Result and explain</summary>
+Result: A </br>
+Explain: static keyword prevent access from outside it's private function (static function can not be extern)
+</details>
