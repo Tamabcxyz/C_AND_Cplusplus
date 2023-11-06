@@ -1,0 +1,106 @@
+============================PHÍM TẮT CHỈNH SỬA VĂN BẢN============================
+
+
+
+=>> Ctrl + Shift + k    (xóa dòng, đặt con trỏ tại dòng cần xóa)
+line một
+hãy xóa line này
+line hai
+
+=>> Ctrl + Enter    (chèn dòng bên dưới con trỏ)
+=>> Ctrl + Shift + Enter    (chèn dòng bên trên con trỏ)
+line một
+hãy chèn "this is bottom" vào line bên dưới và "this is top" vào line bên trên
+line hai
+
+
+=>> Ctrl + mũi tên xuống    (cuộn văn bản xuống)
+=>> Ctrl + mũi tên lên      (cuộn văn bản lên)
+
+
+
+=>> Ctrl + Shift + Alt + mũi tên xuống      (chọn nhiều dòng bên dưới con trỏ chuột)
+=>> Ctrl + Shift + Alt + mũi tên lên        (chọn nhiều dòng bên trên con trỏ chuột)
+dòng 1
+dòng 2
+dòng 3
+dòng 4
+không dùng chuột chuyển tất cả thành "dòng 1"
+
+==> Alt + mũi tên xuống/mũi tên lên     (di chuyển line lên xuống)
+
+=>> Shift + Alt + mũi tên xuống     (copy nội dung dòng hiện tại xuống dưới)
+=>> Shift + Alt + mũi tên lên       (copy nội dung dòng hiện tại lên trên)
+line 1
+double line 1
+
+
+
+=>> Ctrl + D    (chọn văn bản giống văn bản bôi đen hiện tại)
+hello bằng xin chào, hi cũng là xin chào hay 2 cũng là xin chào nốt ^^
+bôi đen tất cả từ xin trong line trên
+
+
+
+=>> Ctrl + Shift + l    (chọn văn bản giống văn bản tô đen không phân biệt hoa, thường)
+=>> Ctrl + F2           (chọn văn bản giống tại vị trí dấu nhắc lệnh phân biệt hoa, thường)
+hello bằng xin chào, hi cũng là Xin chào hay 2 cũng là XIN chào nốt ^^
+
+
+=>> Ctrl + home        (di chuyển tới đầu văn bản)
+=>> Ctrl + end        (di chuyển tới cuối văn bản)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
