@@ -1,5 +1,7 @@
 /**
  * enum-key enum-name : enumerator-type {};
+ *
+ * cannot compare two oject type enum
  */
 
 enum { Red, Green, Blue };
@@ -16,6 +18,21 @@ enum : long long { Red, Green, Blue }; // underlying type: long long
 
 // ==>should declare like this
 enum Color : uint8_t { Red = 1, Green = 2, Blue = 3 };
+
+#include <iostream>
+#include <type_traits>
+enum Color1 : int { Red = 1, Green = 2, Blue = 3 };
+
+enum class Color2 : int { Red = 1, Green = 2, Blue = 3 };
+
+int main() {
+
+  std::cout << Color1::Red << std::endl;
+  std::cout << static_cast<std::underlying_type<Color2>::type>(
+      Color2::Red); // cannot print because Color2 is enum class
+
+  return 0;
+}
 
 #include <iostream>
 

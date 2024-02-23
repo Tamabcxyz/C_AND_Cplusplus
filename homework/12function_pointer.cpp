@@ -16,8 +16,7 @@ int performOperation(int x, int y, int (*operation)(int, int)) {
 
 int main() {
   int (*fadd)(int, int) = add; // function pointer point to add function
-  int (*fsubtract)(int, int) =
-      subtract; // function pointer point to subtract function
+  int (*fsubtract)(int, int) = subtract; // function pointer point to subtract function
 
   std::cout << performOperation(5, 3, fadd) << std::endl;
   std::cout << performOperation(5, 3, fsubtract) << std::endl;

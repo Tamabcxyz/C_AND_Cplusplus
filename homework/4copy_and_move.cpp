@@ -1,3 +1,13 @@
+/**
+ * copy constructor: syntax: classname(const classname &)
+ *  shallow copy: have the same address with input object
+ *  deep copy: create new address and copy data of input object
+ * move constructor:  "steal" the existing resources without additional allocations (of r-value reference) syntax: classname(classname &&)
+ * 
+ * copy assigment: input is l-value reference. return address of class after copy. syntax: classname &operator=(const classname &)
+ * move assigment: input is r-value regerence. return address of class after copy. syntax: classname &operator=(const classname &&)
+*/
+
 #include <cstring>
 #include <iostream>
 

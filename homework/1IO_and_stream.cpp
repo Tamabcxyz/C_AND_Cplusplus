@@ -25,9 +25,9 @@
 // Some method common
 // std::ios::boolalpha;
 // std::ios::noboolalpha;
-// std::ios::showbase;
-// std::ios::showpos;
-// std::ios::showpoint;
+// std::ios::showbase; //oct, hex, dec,...
+// std::ios::showpos; //positive(+) or negative(-)
+// std::ios::showpoint; //show the 0 after . (float type)
 // std::ios::basefield;
 // std::ios::uppercase;
 // std::cout.setf(std::ios::boolalpha);

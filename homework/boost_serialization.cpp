@@ -58,7 +58,7 @@ int main() {
   decodeArchive >> decodeMsg;
 
   std::cout << "Deserialized message: id: " << decodeMsg.getID()
-            << " message: " << decodeMsg.getMsg() << std::endl;
+            << " message: " << decodeMsg.getMsg() << std::endl; 
 
   return 0;
 }

@@ -163,6 +163,20 @@ int main() {
  * a std::unique_lock object can not be copied. it can be moved
  */
 
+std::unique_lock<std::mutex> myLock(myMutex, std::try_to_lock);
+if (myLock.owns_lock()) {
+    // Lock was successfully acquired
+} else {
+    // Lock could not be acquired
+}
+
+std::unique_lock<std::mutex> myLock(myMutex, std::defer_lock);
+// ... some other operations ...
+myLock.lock();  // Now, explicitly lock the mutex when needed
+
+std::unique_lock<std::mutex> myLock(myMutex, std::adopt_lock);
+// The mutex is assumed to be already locked by the current thread
+
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -212,6 +226,35 @@ int main() {
  *  for each lock() call, there must enventually be an unlock() call
  * Normally a sign of bad design
  */
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+std::recursive_mutex myMutex;
+
+void recursiveFunction(int depth) {
+    std::unique_lock<std::recursive_mutex> lock(myMutex);
+    std::cout << "Depth: " << depth << " - Thread ID: " << std::this_thread::get_id() << " - Locked" << std::endl;
+
+    if (depth > 0) {
+        recursiveFunction(depth - 1);
+    }
+
+    // The lock will be automatically released when 'lock' goes out of scope
+    std::cout << "Depth: " << depth << " - Thread ID: " << std::this_thread::get_id() << " - Unlocked" << std::endl;
+}
+
+int main() {
+    std::thread t1(recursiveFunction, 3);
+    std::thread t2(recursiveFunction, 2);
+
+    t1.join();
+    t2.join();
+    //In this example, recursiveFunction is a recursive function that locks the std::recursive_mutex and calls itself with a reduced depth. Since std::recursive_mutex allows multiple locks from the same thread, this won't lead to a deadlock.
+    return 0;
+}
+
 
 /**
  * std::timed_mutex
@@ -393,8 +436,10 @@ int main() {
 
 /**
  * std::shared_mutex is defined in <shared_mutex> . it can be locked in two
- * different ways -exclusive lock no other thread may acquire a lock no other
- * thread can enter a critical section -shared lock other threads may acquire a
+ * different ways 
+ * - exclusive lock no other thread may acquire a lock no other
+ * thread can enter a critical section 
+ * - shared lock other threads may acquire a
  * shared lock they can execute critical sections concurrently
  *
  * std::lock_guard<std::shared_mutex>
@@ -573,7 +618,7 @@ int main() {
 #include <thread>
 
 using namespace std;
-// thread-local random number engine
+// thread-local random number engine, Each thread that accesses it gets its own copy.
 thread_local std::mt19937 mt;
 // std::mt19937 mt; // if don't have thread_local random of two thread will have
 // different values
@@ -610,8 +655,7 @@ class Test {
 public:
   Test() { std::cout << "Test constructor called\n"; }
 
-  void func() { /*...*/
-  }
+  void func() { std::cout << "func call\n"; }
 };
 
 Test *ptest = nullptr; // Variable to be lazily initialized
@@ -629,6 +673,9 @@ int main() {
   std::thread thr2(process);
   thr1.join();
   thr2.join();
+  /**
+   * This pattern is useful when you want to ensure that an expensive initialization operation is performed only once, regardless of how many threads attempt to access the shared resource concurrently.
+  */
 }
 
 // Lazy initialization (multi-threaded)
@@ -642,8 +689,7 @@ class Test {
 public:
   Test() { std::cout << "Test constructor called\n"; }
 
-  void func() { /*...*/
-  }
+  void func() { std::cout << "func call\n"; }
 };
 
 void process() {
