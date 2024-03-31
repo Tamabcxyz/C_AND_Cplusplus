@@ -1,0 +1,43 @@
+. => any single charater (any character except newline characters)
+\s => any whitespace character (also capture \t \n \r \f)
+| => any one element separated by the vertical bar (|) character
+\u => Matches a Unicode character by using hexadecimal representation
+
+[ character_group ] => Matches any single character in character_group. By default, the match is case-sensitive
+[ first - last ] => Matches any single character in the range from first to 
+
+\d => any single digit
+\D => any non-digit
+\w => any word character ([A-Za-z0-9])
+\W => nay non-word
+
+[^a-z] => not matches any character in range from a to z
+
+? => zero or one of (a? zero or more character a) same with a{0,1}
++ => one or more of (a+ one or more of character a) same with a{1,}
+* => zero or more of (a* zero or more of character a) same with a{0,}
+
+{a-number} => exactly with number apprears (\d{3} any number apprear 3 consecutive times like 123 222 231)
+(\w+), (\w+) \1 =>captrure group 
+                    My name is Bond, James Bond
+                    You can call me English, Johnny English
+                    And I am Bernard, Andrew Baines Bernard
+
+(?: ... ) => is a non-capturing group, and ? makes the whole group optional.
+
+
+-shorthand
+-unicode ranges
+-nested groups
+-named grous
+-lookahead
+-lookbehind
+-anchors
+-word boundaries
+
+
+
+
+
+
+
