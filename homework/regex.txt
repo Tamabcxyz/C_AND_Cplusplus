@@ -13,7 +13,7 @@
 
 [^a-z] => not matches any character in range from a to z
 
-? => zero or one of (a? zero or more character a) same with a{0,1}
+? => zero or one of (a? zero or one character a) same with a{0,1}
 + => one or more of (a+ one or more of character a) same with a{1,}
 * => zero or more of (a* zero or more of character a) same with a{0,}
 
@@ -35,8 +35,21 @@
 -anchors
 -word boundaries
 
+^(?:\/(?:[^'"\[\]{}\/]+\/?)+)$
 
-
+"/abc/def/aa[1]/kk",
+"/abc/def/aa[1/kk",
+"/abc/def/aa1]/kk",
+"/abc/def/aa{1}/kk",
+"/abc/def/aa{1/kk",
+"/abc/def/aa1}/kk",
+"/abc/def/aa"aa"/kk",
+"/abc/def/"aa"/kk",
+"/abc/def/aa"/kk",
+"/abc/def/aa'aa'/kk",
+"/abc/def/'aa'/kk",
+"/abc/def/aa'/kk",
+ 
 
 
 

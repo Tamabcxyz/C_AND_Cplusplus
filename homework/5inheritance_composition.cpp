@@ -72,7 +72,7 @@ public:
     std::cout << "Derived no-args constructor" << std::endl;
   }
   Derived(int x)
-      : Base{x}, value{x} { // implicit call Base overloaded constructor
+      : Base{x}, value{x} { // implicit call Base overloaded constructor 
     std::cout << "Derived int overloaded constructor" << std::endl;
   }
   Derived(const Derived &other) : Base{other}, value{other.value} {

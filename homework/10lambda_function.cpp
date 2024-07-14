@@ -5,7 +5,7 @@
     Default capture
     [=] //Default capture by value
     [&] //Default capture by reference
-    [this] //Default capture this object bu reference
+    [this] //Default capture this object by reference
 
     Using default and explicit captures
     [=, &x] //Default caputure by value but capture x by reference

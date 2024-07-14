@@ -459,3 +459,340 @@ int main() {
  * deque: inserting and deleting elements at both ends can access randomly
  * forward_list, 
 */
+
+/**
+ * std::all_of: kiểm tra tất cả phần tử thuộc phạm vi
+ * std::any_of: kiểm tra một phần tử bất kì thuộc phạm vi
+ * std::none_of: không phần tử nào thuộc phạm vi
+*/
+
+/**
+ * std::for_each_n: chỉ kiểm tra n số
+*/
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    std:vector<int> nums = {
+      1,2,3,4,5,6,7,8,-1   
+    };
+    auto check = [](int x){
+        bool b = x>0;
+        if(b){
+            std::cout << "yes\n";
+        } else {
+            std::cout << "no\n";
+        }
+        return b;
+    };
+    std::for_each_n(nums.begin(), 5, check); // n in here is 5
+    return 0;
+}
+
+/**
+ * std::mismatch: tìm vị trí khác nhau giữa 2 container (vector, string, ...)
+*/
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    std::vector<int> v1 = {
+      1,2,3,4,5,6,7,8,-1   
+    };
+    std::vector<int> v2 = {
+      1,2,3,4,-1, 7, 8
+    };
+    std::vector<int>::iterator end= v1.begin()+3;
+    auto result = std::mismatch(v1.begin(), end, v2.begin());
+    if(result.first == end && result.second == v2.begin()+3){
+        std::cout << "two vector are equal\n";
+    }
+    return 0;
+}
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    std::vector<int> v1 = {
+      1,2,3,4,5,6,7,8,-1   
+    };
+    std::vector<int> v2 = {
+      1,2,3,4,-1, 7, 8
+    };
+    std::vector<int>::iterator end= std::begin(v1)+3;
+    auto result = std::mismatch(std::begin(v1), end, std::begin(v2));
+    if(result.first == end && result.second == std::begin(v2)+3){
+        std::cout << "two vector are equal\n";
+    }
+    return 0;
+}
+
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {1, 2, 3, 6, 5}; // Note the difference at arr2[3]
+
+    auto result = std::mismatch(std::begin(arr1), std::end(arr1), std::begin(arr2));
+    if (result.first != std::end(arr1)) {
+        std::cout << "Mismatch found at position: " << std::distance(std::begin(arr1), result.first) << std::endl;
+        std::cout << "arr1: " << *result.first << ", arr2: " << *result.second << std::endl;
+    } else {
+        std::cout << "Arrays are identical." << std::endl;
+    }
+
+    return 0;
+}
+
+/**
+ * std::equal: kiểm tra 
+*/
+
+#include <iostream>
+#include <algorithm>
+
+bool is_palindrome(const std::string &str) {
+    return std::equal(str.begin(), str.begin() + str.size() / 2, str.rbegin());
+}
+
+int main()
+{
+    const std::string input = "abcba";
+    // const std::string input = "abcbad";
+    std::cout << is_palindrome(input) ? "is palindrome\n" : "not palindrome\n";
+    return 0;
+}
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+bool isPalindrome(const std::vector<int>& vec) {
+    return std::equal(vec.begin(), vec.begin() + vec.size() / 2, vec.rbegin());
+}
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 2, 1}; // Palindrome
+    std::vector<int> vec2 = {1, 2, 3, 4, 5}; // Not a palindrome
+
+    std::cout << "Vector 1 is " << (isPalindrome(vec1) ? "" : "not ") << "a palindrome." << std::endl;
+    std::cout << "Vector 2 is " << (isPalindrome(vec2) ? "" : "not ") << "a palindrome." << std::endl;
+
+    return 0;
+}
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+  // Define two vectors of integers
+  std::vector<int> vec1 = {1, 2, 3, 4, 5};
+  std::vector<int> vec2 = {1, 2, 3, 4, 5};
+
+  // Compare the two vectors using std::equal
+  bool equal = std::equal(vec1.begin(), vec1.end(), vec2.begin());
+
+  // Output the result
+  if (equal) {
+      std::cout << "The vectors are equal." << std::endl;
+  } else {
+      std::cout << "The vectors are not equal." << std::endl;
+  }
+  return 0;
+}
+
+/**
+ * std::find: tìm phần tử 
+ * std::find_if: tìm phần tử thỏa mảng điều kiện 
+ * std::find_if_not: tìm phần tử không thỏa mảng điều kiện 
+*/
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    // Define a vector of integers
+    std::vector<int> nums = {1, 2, 3, 4, 5};
+
+    // Use std::find to search for the value 3
+    auto it = std::find(nums.begin(), nums.end(), 3);
+    if (it != nums.end()) {
+        std::cout << "Found value 3 at index: " << std::distance(nums.begin(), it) << std::endl;
+    } else {
+        std::cout << "Value 3 not found" << std::endl;
+    }
+
+    // Use std::find_if to search for the first even number
+    auto evenIt = std::find_if(nums.begin(), nums.end(), [](int x) { return x % 2 == 0; });
+    if (evenIt != nums.end()) {
+        std::cout << "Found the first even number: " << *evenIt << std::endl;
+    } else {
+        std::cout << "No even number found" << std::endl;
+    }
+
+    // Use std::find_if_not to search for the first odd number
+    auto oddIt = std::find_if_not(nums.begin(), nums.end(), [](int x) { return x % 2 == 0; });
+    if (oddIt != nums.end()) {
+        std::cout << "Found the first odd number: " << *oddIt << std::endl;
+    } else {
+        std::cout << "No odd number found" << std::endl;
+    }
+
+    return 0;
+}
+
+/**
+ * std::find_last: tìm phần tử cuối cùng xuất hiện
+ * std::find_last: tìm phần tử cuối cùng xuất hiện phù hợp với điều kiện
+ * std::find_last: tìm phần tử cuối cùng xuất hiện không phù hợp với điều kiện
+*/
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+template <typename ForwardIt, typename T>
+ForwardIt find_last(ForwardIt first, ForwardIt last, const T& value) {
+    auto it = std::find(std::reverse_iterator<ForwardIt>(last), std::reverse_iterator<ForwardIt>(first), value);
+    if (it != std::reverse_iterator<ForwardIt>(first)) {
+        return std::prev(it.base());
+    }
+    return last;
+}
+
+template <typename ForwardIt, typename UnaryPredicate>
+ForwardIt find_last_if(ForwardIt first, ForwardIt last, UnaryPredicate p) {
+    auto it = std::find_if(std::reverse_iterator<ForwardIt>(last), std::reverse_iterator<ForwardIt>(first), p);
+    if (it != std::reverse_iterator<ForwardIt>(first)) {
+        return std::prev(it.base());
+    }
+    return last;
+}
+
+template <typename ForwardIt, typename UnaryPredicate>
+ForwardIt find_last_if_not(ForwardIt first, ForwardIt last, UnaryPredicate p) {
+    auto it = std::find_if_not(std::reverse_iterator<ForwardIt>(last), std::reverse_iterator<ForwardIt>(first), p);
+    if (it != std::reverse_iterator<ForwardIt>(first)) {
+        return std::prev(it.base());
+    }
+    return last;
+}
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5, 3, 6, 7, 8, 3};
+
+    // Find the last occurrence of value 3
+    auto lastThree = find_last(nums.begin(), nums.end(), 3);
+    if (lastThree != nums.end()) {
+        std::cout << "Last occurrence of value 3 at index: " << std::distance(nums.begin(), lastThree) << std::endl;
+    } else {
+        std::cout << "Value 3 not found" << std::endl;
+    }
+
+    // Find the last even number
+    auto lastEven = find_last_if(nums.begin(), nums.end(), [](int x) { return x % 2 == 0; });
+    if (lastEven != nums.end()) {
+        std::cout << "Last even number: " << *lastEven << std::endl;
+    } else {
+        std::cout << "No even number found" << std::endl;
+    }
+
+    // Find the last odd number
+    auto lastOdd = find_last_if_not(nums.begin(), nums.end(), [](int x) { return x % 2 == 0; });
+    if (lastOdd != nums.end()) {
+        std::cout << "Last odd number: " << *lastOdd << std::endl;
+    } else {
+        std::cout << "No odd number found" << std::endl;
+    }
+
+    return 0;
+}
+
+/**
+ * std::prev: chỉ tới phần tử liền sau
+ * std::prev: chỉ tới phần tử liền trước
+*/
+#include <iostream>
+#include <vector>
+#include <iterator> // for std::prev and std::next
+
+int main() {
+    std::vector<int> numbers = {1, 2, 3, 4, 5};
+
+    // Example with std::prev
+    auto it = numbers.begin() + 3; // Iterator pointing to the fourth element
+    auto prev_it = std::prev(it); // Iterator pointing to the third element
+    std::cout << "Previous element: " << *prev_it << std::endl;
+
+    // Example with std::next
+    auto next_it = std::next(it); // Iterator pointing to the fifth element
+    std::cout << "Next element: " << *next_it << std::endl;
+
+    return 0;
+}
+
+/**
+ * Basics of std::reference_wrapper
+  Purpose: std::reference_wrapper is used to wrap a reference in a copyable, assignable object.
+  Header: It's defined in the <functional> header.
+  Type: std::reference_wrapper<T> where T is the type of the object being referenced
+
+
+  std::vector<int> vs std::vector<std::reference_wrapper<int>>
+
+  Storage:
+    std::vector<int> stores copies of integers.
+    std::vector<std::reference_wrapper<int>> stores references to integers.
+  
+  Memory Ownership:
+    std::vector<int> owns and manages the memory for the integers.
+    std::vector<std::reference_wrapper<int>> does not own the memory for the integers; it merely references integers managed elsewhere.
+
+  Modification Effects:
+    Modifying an element in std::vector<int> does not affect any other variable.
+    Modifying an element in std::vector<std::reference_wrapper<int>> directly affects the referenced variable.
+
+  Use Cases:
+    Use std::vector<int> when you want to store and manage a collection of integer values.
+    Use std::vector<std::reference_wrapper<int>> when you need to create a collection of references to existing integer values, allowing you to modify the original values through the vector.
+ */
+
+#include <iostream>
+#include <functional>
+#include <vector>
+
+void print(int& i) {
+    std::cout << i << std::endl;
+}
+
+int main() {
+    int a = 10;
+    int b = 20;
+    int c = 30;
+
+    // Create a vector of reference wrappers
+    std::vector<std::reference_wrapper<int>> vec;
+    vec.push_back(a);
+    vec.push_back(b);
+    vec.push_back(c);
+
+    // Modify the original variables through the vector
+    for (auto& elem : vec) {
+        elem.get() += 5; // Access the reference using .get() method
+    }
+
+    // Print the original variables to see the changes
+    std::cout << "a = " << a << ", b = " << b << ", c = " << c << std::endl;
+
+    return 0;
+}

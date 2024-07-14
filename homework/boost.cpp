@@ -1,3 +1,12 @@
+// Here’s a list of some popular Boost libraries:
+
+// Boost.Asio: Provides network and low-level I/O services.
+// Boost.Bimap: A bidirectional map data structure.
+// Boost.Filesystem: Offers portable file system operations.
+// Boost.Graph: Implements various graph algorithms and data structures.
+// Boost.Multithreading: Offers multithreading, synchronization, and thread management tools.
+
+
 // ==============create uuid using boost
 #include <iostream>
 #include <boost/uuid/uuid.hpp>
