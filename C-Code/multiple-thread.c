@@ -7,6 +7,7 @@
 void *printMsg(void *arg) {
   char *str = (char *)arg; // Cast the argument to the correct type
   printf("Thread id %ld: %s\n", pthread_self(), str);
+ 
   pthread_exit(NULL);
 }
 
@@ -22,6 +23,7 @@ int main() {
   }
 
   // Wait for the thread to complete
+
   if (pthread_join(thread_id, NULL) != 0) {
     perror("Failed to join thread");
     exit(EXIT_FAILURE);
@@ -74,6 +76,8 @@ int main() {
   printf("After Threads\n");
   return 0; // No need to call exit(0) explicitly; return from main will do
 }
+
+
 
 //SOME COMMOND FUNCTION THREAD
 

@@ -102,14 +102,14 @@ int main() {
 #include <stdio.h>
 
 int main() {
-    int a = 5;
-    int b = 10;
+    int a = 5; //0101
+    int b = 10; //1010
 
     printf("Before swap: a = %d, b = %d\n", a, b);
 
-    a = a ^ b;  // a now contains the XOR of a and b
-    b = a ^ b;  // b now contains the original value of a
-    a = a ^ b;  // a now contains the original value of b
+    a = a ^ b;  // a now contains the XOR of a and b ==> a = 0101 XOR 1010 = 1111 = 15
+    b = a ^ b;  // b now contains the original value of a ==> b = 1111 XOR 1010 = 0101 = 5
+    a = a ^ b;  // a now contains the original value of b ==> a = 1111 XOR 0101 = 1010 = 10
 
     printf("After swap: a = %d, b = %d\n", a, b);
 

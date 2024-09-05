@@ -124,26 +124,22 @@ int main() {
     return 0;
 }
 
-// big-endian, little-endian
-// Little-endian: The least significant byte (LSB) is stored at the smallest memory address.
-// Big-endian: The most significant byte (MSB) is stored at the smallest memory address.
-#include <iostream>
-void check() {
-    unsigned int num = 0x12345678; //hex number
-    unsigned char *c = (unsigned char *)&num; //point at first byte of integer
-    // little-endian: the least significant byte will stored at smallest address memory
-    // big-endian: the most significant byte will stored at smallest address memory
-    if (*c == 0x78) {
-        std::cout << "little-endian\n";
-    }
-    else if (*c==0x12) {
-        std::cout << "big-endian\n";
+int main()
+{
+    int n = 0x00000001;
+    //little endian: the least significant bit stored at the lowest memory addres
+    //little endian: the most significant bit stored at the lowest memory addres
+    // little endian: 0x01 0x00 0x00 0x00
+    // big endian: 0x00 0x00 0x00 0x01
+    unsigned char *c = (unsigned char *)&n;
+    if(*c == 0x01) {
+        std::cout << "little endian\n";
+    } else if (*c == 0x00) {
+        std::cout << "big endian\n";
     } else {
-        std::cout << "unknown\n";
+        std::cout << "unknow\n";
     }
-}
-int main(){
-    check();
+    std::cout << static_cast<int>(*c);
     return 0;
 }
 
