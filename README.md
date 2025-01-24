@@ -12,7 +12,15 @@ High Memory
 |   Text     |  (Program code/instructions)
 --------------
 Low Memory
-
+***Stack vs Heap***:
+- Stack memory is fast but limited in size.
+- Heap memory is slower but more flexible and larger in size.
+***Default Initialization***:
+- Variables in BSS are automatically initialized to 0.
+- Local variables on the Stack are not initialized by default (contain garbage values).
+***Memory Management***:
+- Always free() dynamically allocated memory from the Heap.
+- Improper memory management can lead to leaks or crashes.
 # Some questions in c/c++ you need to know
 ###### 1. C data type?
 ```
