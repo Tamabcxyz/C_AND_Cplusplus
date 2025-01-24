@@ -1,4 +1,17 @@
 # Road map: https://roadmap.sh/cpp
+High Memory
+--------------
+|   Stack    |  <--- Grows downward
+--------------
+|   Heap     |  <--- Grows upward
+--------------
+|   BSS      |  (Uninitialized global and static variables)
+--------------
+|   Data     |  (Initialized global and static variables)
+--------------
+|   Text     |  (Program code/instructions)
+--------------
+Low Memory
 
 # Some questions in c/c++ you need to know
 ###### 1. C data type?
