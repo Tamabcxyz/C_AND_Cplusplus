@@ -740,3 +740,60 @@ int main() {
 
     return 0;
 }
+
+
+/**
+ * Basics of std::reference_wrapper
+  Purpose: std::reference_wrapper is used to wrap a reference in a copyable, assignable object.
+  Header: It's defined in the <functional> header.
+  Type: std::reference_wrapper<T> where T is the type of the object being referenced
+
+
+  std::vector<int> vs std::vector<std::reference_wrapper<int>>
+
+  Storage:
+    std::vector<int> stores copies of integers.
+    std::vector<std::reference_wrapper<int>> stores references to integers.
+  
+  Memory Ownership:
+    std::vector<int> owns and manages the memory for the integers.
+    std::vector<std::reference_wrapper<int>> does not own the memory for the integers; it merely references integers managed elsewhere.
+
+  Modification Effects:
+    Modifying an element in std::vector<int> does not affect any other variable.
+    Modifying an element in std::vector<std::reference_wrapper<int>> directly affects the referenced variable.
+
+  Use Cases:
+    Use std::vector<int> when you want to store and manage a collection of integer values.
+    Use std::vector<std::reference_wrapper<int>> when you need to create a collection of references to existing integer values, allowing you to modify the original values through the vector.
+ */
+
+#include <iostream>
+#include <functional>
+#include <vector>
+
+void print(int& i) {
+    std::cout << i << std::endl;
+}
+
+int main() {
+    int a = 10;
+    int b = 20;
+    int c = 30;
+
+    // Create a vector of reference wrappers
+    std::vector<std::reference_wrapper<int>> vec;
+    vec.push_back(a);
+    vec.push_back(b);
+    vec.push_back(c);
+
+    // Modify the original variables through the vector
+    for (auto& elem : vec) {
+        elem.get() += 5; // Access the reference using .get() method
+    }
+
+    // Print the original variables to see the changes
+    std::cout << "a = " << a << ", b = " << b << ", c = " << c << std::endl;
+
+    return 0;
+}
