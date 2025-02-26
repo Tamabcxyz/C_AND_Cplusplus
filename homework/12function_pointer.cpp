@@ -1,5 +1,13 @@
 /**
  * function pointer is a variable that can store the address of a function
+ * 
+ * function pointer can be called as callback fucntion
+ * a callback function is a function that is passed as an argument to another function
+ * two type of callback function:
+ *  syschronous: execute immediately
+ *  asynchronous: execute later
+ * commonly used in event-driven systems
+ * in C, implemented using function pointers
  */
 
 #include <iostream>
